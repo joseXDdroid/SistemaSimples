@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.principalController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.principalController">
    <children>
-      <MenuBar>
+      <MenuBar VBox.vgrow="ALWAYS">
         <menus>
           <Menu mnemonicParsing="false" text="Inicio">
             <items>
@@ -16,7 +16,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#close" text="Fechar" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Cadastro">
+          <Menu mnemonicParsing="false" text="Cadastros">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#abrirCadastro" text="Clientes" />
                   <MenuItem mnemonicParsing="false" text="Funcionários" />
