@@ -47,7 +47,9 @@ public class formularioController {
 
 	@FXML
 	protected TextField txtBuscar;
-
+   
+	
+	@FXML
 	protected void Sair() {
 		try {
 			/* PEGA A CENA DA JANELA ATUAL */
