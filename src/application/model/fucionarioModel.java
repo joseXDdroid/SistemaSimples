@@ -2,7 +2,7 @@ package application.model;
 
 import java.util.Date;
 
-public class usuarioModel {
+public class fucionarioModel {
 
 	private int id;
 	private String nome;
@@ -15,7 +15,7 @@ public class usuarioModel {
 	private Date data_cadastro;
 	private Date data_alteracao;
 
-	public usuarioModel(int id, String nome, String cpf, String rg, String cargo, String salario, String usuario,
+	public fucionarioModel(int id, String nome, String cpf, String rg, String cargo, String salario, String usuario,
 			String senha, Date data_cadastro, Date data_alteracao) {
 		this.id = id;
 		this.nome = nome;

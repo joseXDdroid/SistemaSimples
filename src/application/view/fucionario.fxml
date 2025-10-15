@@ -49,6 +49,22 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
+                  <TextField fx:id="txtNome" layoutX="40.0" layoutY="144.0" prefHeight="26.0" prefWidth="169.0" />
+                  <TextField fx:id="txtSalario" layoutX="40.0" layoutY="222.0" prefHeight="26.0" prefWidth="169.0" />
+                  <TextField fx:id="txtCpf" layoutX="236.0" layoutY="144.0" prefHeight="26.0" prefWidth="169.0" />
+                  <TextField fx:id="txtUsuario" layoutX="236.0" layoutY="222.0" prefHeight="26.0" prefWidth="169.0" />
+                  <TextField fx:id="txtRg" layoutX="435.0" layoutY="144.0" prefHeight="26.0" prefWidth="169.0" />
+                  <TextField fx:id="txtSenha" layoutX="435.0" layoutY="222.0" prefHeight="26.0" prefWidth="169.0" />
+                  <TextField fx:id="txtCargo" layoutX="635.0" layoutY="144.0" prefHeight="26.0" prefWidth="169.0" />
+                  <TextField fx:id="txtData_cadastro" layoutX="635.0" layoutY="222.0" prefHeight="26.0" prefWidth="169.0" />
+                  <Label layoutX="40.0" layoutY="126.0" text="Nome" />
+                  <Label layoutX="40.0" layoutY="204.0" text="Salario" />
+                  <Label layoutX="236.0" layoutY="126.0" text="Cpf" />
+                  <Label layoutX="236.0" layoutY="204.0" text="Usuario" />
+                  <Label layoutX="435.0" layoutY="126.0" text="RG" />
+                  <Label layoutX="435.0" layoutY="204.0" text="Senha" />
+                  <Label layoutX="635.0" layoutY="126.0" text="Cargo" />
+                  <Label layoutX="635.0" layoutY="204.0" text="Data cadastro" />
                </children>
             </AnchorPane>
         </items>
