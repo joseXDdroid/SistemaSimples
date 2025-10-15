@@ -19,7 +19,7 @@
           <Menu mnemonicParsing="false" text="Cadastros">
             <items>
               <MenuItem mnemonicParsing="false" text="Clientes" />
-                  <MenuItem mnemonicParsing="false" onAction="#abrirFucionario" text="Funcionários" />
+                  <MenuItem mnemonicParsing="false" onAction="#abrirFuncionario" text="Funcionários" />
                   <MenuItem mnemonicParsing="false" text="Produtos" />
             </items>
           </Menu>
