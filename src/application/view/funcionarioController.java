@@ -1,16 +1,16 @@
 package application.view;
 
+import java.util.Date;
+import java.util.List;
+
+import application.dao.funcionarioDAO;
+import application.model.funcionarioModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import application.model.funcionarioModel;
-
-import java.util.List;
-
-import application.dao.funcionarioDAO;
 
 public class funcionarioController extends formularioController {
 
@@ -106,4 +106,72 @@ public class funcionarioController extends formularioController {
 
 	}
 
+	@FXML
+	protected void Salvar() {
+		funcionarioDAO dao = new funcionarioDAO();
+
+		try {
+
+			String nome = txtNome.getText();
+			String cpf = txtCpf.getText();
+			String rg = txtRg.getText();
+			String cargo = txtCargo.getText();
+			String salario = txtSalario.getText();
+			String usuario = txtUsuario.getText();
+			String senha = txtSenha.getText();
+			Date data = new Date();
+
+			if (statusForm == 1) {
+				funcionarioModel novoFuncionario = new funcionarioModel(0, nome, cpf, rg, cargo, salario, usuario,
+						senha, data, data);
+				boolean ok = dao.inserirFuncionario(novoFuncionario);
+
+				if (ok) {
+					// MENAGEM DE CADASTRO CONCLUIDO
+				} else {
+					// MENSAGEM DE ERRO AO CADASTRA
+				}
+
+			} else if (statusForm == 2) {
+				int id = tabDados.getSelectionModel().getSelectedItem().getID();
+				funcionarioModel atualizarFuncionario = new funcionarioModel(id, nome, cpf, rg, cargo, salario, usuario,
+						senha, null, null);
+				boolean ok = dao.atualiazrFuncionario(atualizarFuncionario);
+				if (ok) {
+					// MENSAGEM DE ALTERAÇÃO BEM SUCEDIDO
+				} else {
+					// MENSAGEM DE ERRO AO ATUALIZAR
+				}
+
+			} else {
+				return;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			carregaDados(null);
+		}
+	}
+
+	@FXML
+	protected void Excluir() {
+		funcionarioDAO dao = new funcionarioDAO();
+		int id = tabDados.getSelectionModel().getSelectedItem().getID();
+		boolean ok = dao.excluirFuncionario(id);
+
+		try {
+			if (ok) {
+				// MENSAGEM DE EXCLUIDO COM SUCESSO
+				carregaDados(null);
+			} else {
+				// MENSAGEM DE ERRO AO EXCLUIR
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			carregaDados(null);
+		}
+
+	}
 }
