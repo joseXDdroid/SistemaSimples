@@ -22,12 +22,12 @@ public class funcionarioDAO {
 			conn = conexao.getConnection();
 			if (conn == null)
 				return funcionarios;
-			String sql = "select *from funcionario";
+			String sql = "select *from funcionarios";
 
 			if (desc != null && !desc.isEmpty()) {
-				sql = "select *from funcionario where nome like ?";
+				sql = "select *from funcionarios where nome like ?";
 				query = conn.prepareStatement(sql);
-				query.setString(1, "%" + sql + "%");
+				query.setString(1, "%" + desc + "%");
 			} else {
 				query = conn.prepareStatement(sql);
 			}
