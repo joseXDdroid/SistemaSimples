@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -76,42 +77,49 @@ public class formularioController {
 
 	/* METODO INITIALIZE */
 	@FXML
-	protected void init() {
+	protected void init() {//Metodo initialize();
 		carregaDados(null);
-
-		txtBuscar.setOnAction(e -> {
-			carregaDados(txtBuscar.getText());
-		});
-
-		btnSair.setOnAction(e -> {
-			Sair();
-		});
-
-		btnNovo.setOnAction(e -> {
-			statusForm = 0;
-			emEdicao(true);
-			limpaCampos();
-		});
-
-		btnEditar.setOnAction(e -> {
-			statusForm = 1;
-			emEdicao(true);
-			habilitarCampos(true);
-		});
-
-		btnSalvar.setOnAction(e -> {
-			Salvar();
-		});
-
-		btnCancelar.setOnAction(e -> {
-			carregaDados(null);
-		});
-
-		btnEditar.setOnAction(e -> {
-			Excluir();
-		});
-
-	}
+		
+		txtBuscar.setOnAction(e->{carregaDados(txtBuscar.getText());});
+		
+	btnSair.setOnAction(e-> {Sair();});
+	
+	btnNovo.setOnAction(e->{
+		statusForm=1;
+		emEdicao(true);
+		habilitarCampos(true);
+		limpaCampos();
+	});
+	
+	btnEditar.setOnAction(e->{
+		statusForm=2;
+		emEdicao(true);
+		habilitarCampos(true);
+	});
+	
+	btnSalvar.setOnAction(e->{Salvar();});
+	
+	btnCancelar.setOnAction(e->{carregaDados(null);});
+	
+	btnExcluir.setOnAction(e->{Excluir();});
+	
+	formCadastro.sceneProperty().addListener((obs, oldScene, newScene)->{
+		if (newScene!=null) {
+			newScene.setOnKeyPressed(e->{
+				KeyCode key = e.getCode();
+				
+				switch (key) {
+				case ESCAPE:
+					Sair();
+					break;
+				default:
+					break;
+				}
+			});
+		}
+	});
+		
+}
 
 	protected void habilitarCampos(boolean status) {
 		for (javafx.scene.Node node : formCadastro.getChildren()) {
@@ -137,8 +145,8 @@ public class formularioController {
 		btnNovo.setDisable(status);
 		btnEditar.setDisable(status);
 		btnExcluir.setDisable(status);
-		btnCancelar.setDisable(status);
-		btnSalvar.setDisable(status);
+		btnCancelar.setDisable(!status);
+		btnSalvar.setDisable(!status);
 
 	}
 

@@ -66,7 +66,7 @@ public class funcionarioDAO {
 		PreparedStatement query = null;
 		try {
 			conn = conexao.getConnection();
-			String sql = "insert funcionarios(nome,cpf,rg,cargo,salario,usuario,senha,data_cadastro,data_alteracao values (?,?,?,?,?,?,?,now(),null)";
+			String sql = "insert funcionarios(nome,cpf,rg,cargo,salario,usuario,senha,data_cadastro,data_alteracao) values (?,?,?,?,?,?,?,now(),null)";
 
 			query=conn.prepareStatement(sql);
 			query.setString(1, f.getNome());
@@ -76,7 +76,6 @@ public class funcionarioDAO {
 			query.setString(5, f.getSalario());
 			query.setString(6, f.getUsuario());
 			query.setString(7, f.getSenha());
-			query.setInt(8, f.getID());
 
 			int insert = query.executeUpdate();
 
@@ -90,30 +89,32 @@ public class funcionarioDAO {
 
 	// UPDATE
 
-	public boolean atualiazrFuncionario(funcionarioModel f) {
-		Connection conn = null;
+	public boolean atualizarFuncionario(funcionarioModel f) {
+		Connection conn=null;
 		PreparedStatement query = null;
 		try {
-			conn = conexao.getConnection();
-			String sql = "update funcionarios set nome=?, cpf=?, rg=?, cargo=?, salario=?, usuario=?, senha=?, data_alteracao=now() where id_funcionario=?";
-
-			query=conn.prepareStatement(sql);
-			query.setString(1, f.getNome());
-			query.setString(2, f.getCpf());
-			query.setString(3, f.getRg());
-			query.setString(4, f.getCargo());
-			query.setString(5, f.getSalario());
-			query.setString(6, f.getUsuario());
-			query.setString(7, f.getSenha());
-			query.setInt(8, f.getID());
-
-			int update = query.executeUpdate();
-
-			return update > 0;
-		} catch (Exception e) {
+		conn=conexao.getConnection();
+		String sql="update funcionarios set nome=?, cpf=?, rg=?, cargo=?,"+
+		"salario=?, usuario=?, senha=?, data_alteracao=now() where id_funcionario=?";
+		
+		query=conn.prepareStatement(sql);
+		query.setString(1, f.getNome());
+		query.setString(2, f.getCpf());
+		query.setString(3, f.getRg());
+		query.setString(4, f.getCargo());
+		query.setString(5, f.getSalario());
+		query.setString(6, f.getUsuario());
+		query.setString(7, f.getSenha());
+		query.setInt(8, f.getID());
+		
+		int update = query.executeUpdate();
+		
+		return update>0;
+		
+		}catch(Exception e ) {
 			e.printStackTrace();
-			return false;
-		}
+		return false;
+		}		
 	}
 
 	// DELETE

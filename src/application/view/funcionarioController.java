@@ -136,7 +136,7 @@ public class funcionarioController extends formularioController {
 				int id = tabDados.getSelectionModel().getSelectedItem().getID();
 				funcionarioModel atualizarFuncionario = new funcionarioModel(id, nome, cpf, rg, cargo, salario, usuario,
 						senha, null, null);
-				boolean ok = dao.atualiazrFuncionario(atualizarFuncionario);
+				boolean ok = dao.atualizarFuncionario(atualizarFuncionario);
 				if (ok) {
 					// MENSAGEM DE ALTERAÇÃO BEM SUCEDIDO
 				} else {
