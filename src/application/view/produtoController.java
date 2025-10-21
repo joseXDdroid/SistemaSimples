@@ -60,6 +60,9 @@ public class produtoController extends formularioController {
 
 	@FXML
 	private TextField txtEstoque;
+	
+	@FXML
+    private TextField txtCod_Barras;
 
 	@FXML
 	private TextField txtNome;
@@ -87,6 +90,7 @@ public class produtoController extends formularioController {
 				txtNome.setText(novaSelecao.getNome());
 				txtPreco.setText(novaSelecao.getPreco().toString());
 				txtEstoque.setText(String.valueOf(novaSelecao.getEstoque()));
+				txtCod_Barras.setText(novaSelecao.getCod_barras());
 				txtDescricao.setText(novaSelecao.getDescricao());
 				txtData_cadastro.setText(novaSelecao.getData_cadastro().toString());
 			}
@@ -111,6 +115,7 @@ public class produtoController extends formularioController {
 				txtNome.setText(produto.getNome());
 				txtPreco.setText(produto.getPreco().toString());
 				txtEstoque.setText(String.valueOf(produto.getEstoque()));
+				txtCod_Barras.setText(produto.getCod_barras());
 				txtDescricao.setText(produto.getDescricao());
 				txtData_cadastro.setText(produto.getData_cadastro().toString());
 			}
@@ -127,11 +132,12 @@ public class produtoController extends formularioController {
 			String nome = txtNome.getText();
 			Double preco = Double.valueOf(txtPreco.getText());
 			Integer estoque = Integer.valueOf(txtEstoque.getText());
+			String cod_barras = txtCod_Barras.getText();
 			String descricao = txtDescricao.getText();
 			Date data = new Date();
 
 			if (statusForm == 1) {
-				produtoModel novoProduto = new produtoModel(0, nome, descricao, preco, estoque, data, data);
+				produtoModel novoProduto = new produtoModel(0, nome, descricao, preco, estoque, cod_barras, data, data);
 				boolean ok = dao.inserirProduto(novoProduto);
 
 				if (ok) {
@@ -142,7 +148,7 @@ public class produtoController extends formularioController {
 
 			} else if (statusForm == 2) {
 				int id = tabDados.getSelectionModel().getSelectedItem().getID();
-				produtoModel atualizarProduto = new produtoModel(id, nome, descricao, preco, estoque, null, null);
+				produtoModel atualizarProduto = new produtoModel(id, nome, descricao, preco, estoque, cod_barras, null, null);
 				boolean ok = dao.atualizarProduto(atualizarProduto);
 				if (ok) {
 					// MENSAGEM DE ALTERAÇÃO BEM SUCEDIDO

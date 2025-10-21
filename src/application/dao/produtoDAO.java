@@ -38,13 +38,14 @@ public class produtoDAO {
 				while (resultado.next()) {
 					produtoModel f = new produtoModel(resultado.getInt("id_produto"),
 							resultado.getString("nome"), resultado.getString("descricao"), resultado.getDouble("preco"),
-							resultado.getInt("estoque"),resultado.getDate("data_cadastro"),
+							resultado.getInt("estoque"),resultado.getString("cod_barras"),resultado.getDate("data_cadastro"),
 							resultado.getDate("data_alteracao"));
 					f.setID(resultado.getInt("id_produto"));
 					f.setNome(resultado.getString("nome"));
 					f.setDescricao(resultado.getString("descricao"));
 					f.setPreco(resultado.getDouble("preco"));
 					f.setEstoque(resultado.getInt("estoque"));
+					f.setCod_barras(resultado.getString("cod_barras"));
 					f.setData_cadastro(resultado.getDate("data_cadastro"));
 					f.setData_alteracao(resultado.getDate("data_alteracao"));
 					Produto.add(f);
@@ -63,13 +64,14 @@ public class produtoDAO {
 			PreparedStatement query = null;
 			try {
 				conn = conexao.getConnection();
-				String sql = "insert produtos(nome,descricao,preco,estoque,data_cadastro,data_alteracao) values (?,?,?,?,?,?,now(),null)";
+				String sql = "insert produtos(nome,descricao,preco,estoque,cod_barras,data_cadastro,data_alteracao) values (?,?,?,?,?,now(),null)";
 
 				query=conn.prepareStatement(sql);
 				query.setString(1, f.getNome());
 				query.setString(2, f.getDescricao());
 				query.setDouble(3, f.getPreco());
 				query.setInt(4, f.getEstoque());
+				query.setString(5, f.getCod_barras());
 
 				int insert = query.executeUpdate();
 
@@ -88,15 +90,16 @@ public class produtoDAO {
 			PreparedStatement query = null;
 			try {
 			conn=conexao.getConnection();
-			String sql="update produtos set nome=?, descricao=?, preco=?, estoque=?,"+
-			"data_alteracao=now() where id_produtos=?";
+			String sql="update produtos set nome=?, descricao=?, preco=?, estoque=?,cod_barras=?,"+
+			"data_alteracao=now() where id_produto=?";
 			
 			query=conn.prepareStatement(sql);
 			query.setString(1, f.getNome());
 			query.setString(2, f.getDescricao());
 			query.setDouble(3, f.getPreco());
 			query.setInt(4, f.getEstoque());
-			query.setInt(8, f.getID());
+			query.setString(5, f.getCod_barras());
+			query.setInt(6, f.getID());
 			
 			int update = query.executeUpdate();
 			
