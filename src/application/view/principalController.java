@@ -58,7 +58,11 @@ public class principalController {
 	}
 	
 	public void abrirFuncionario() {
-		carregaTelas("funcionario.fxml","Fucionario");
+		carregaTelas("funcionario.fxml","Funcionario");
+	}
+	
+	public void abrirProdutos() {
+		carregaTelas("produto.fxml","Produto");
 	}
 	
 	public void abrirInicio() {

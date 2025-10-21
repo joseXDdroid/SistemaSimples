@@ -1,5 +1,6 @@
 package application.view;
 
+import application.dao.funcionarioDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -31,12 +32,15 @@ public class loginController {
     	
     	Alert mensagem;
     	
-    	if(usuario.equals("1") && senha.equals("1")) {
+    	funcionarioDAO dao=new funcionarioDAO();
+    	if (dao.autenticar(usuario, senha)){
     		mensagem= new Alert(Alert.AlertType.CONFIRMATION);//CRIA UMA NOVA MENSAGEM
     		mensagem.setTitle("Confirmação");//INFORMA O TITULO DA MENSAGEM
     		mensagem.setHeaderText(null);//REMOVE O CABEÇALHO DA MENSAGEM
     		mensagem.setContentText("Bem vindo ao Sistema "+usuario);//TEXTO DO CORPO DA MENSAGEM
     		mensagem.showAndWait();//MOSTRA A MENSAGEM
+    		
+    		//metodo.mensagem("Confirmação", null, "Bem vindo Ao Sistema","0");
     		
     		/*FECHAR TELA DE LOGIN*/
     		btnEntrar.getScene().getWindow().hide();

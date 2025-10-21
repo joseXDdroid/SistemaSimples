@@ -5,11 +5,32 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+
 import application.model.funcionarioModel;
 import application.util.conexao;
 
 public class funcionarioDAO {
 
+	//AUTENTICAR USUARIO E SENHA
+	public boolean autenticar (String usuario, String senha) {
+		try {
+			String sql = "select *from funcionarios where BINARY usuario=? and BINARY senha=?";
+			Connection conn = conexao.getConnection();
+			PreparedStatement query = conn.prepareStatement(sql);
+			
+			query.setString(1, usuario);
+			query.setString(2, senha);
+			
+			ResultSet resultado = query.executeQuery();
+			return resultado.next();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+	}
+	
 	// LISTA
 
 	public List<funcionarioModel> listarFuncionarios(String desc) {
