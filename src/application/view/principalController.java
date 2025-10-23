@@ -68,5 +68,13 @@ public class principalController {
 	public void abrirInicio() {
 		carregaTelas("planoFundo.fxml","Inicio");
 	}
+	
+	public void abrirCliente() {
+		carregaTelas("cliente.fxml","Cliente");
+	}
+	
+	public void abrirFrenteCaixa() {
+		carregaTelas("frenteCaixa.fxml","Frente Caixa");
+	}
 
 }

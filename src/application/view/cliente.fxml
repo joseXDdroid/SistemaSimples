@@ -49,6 +49,16 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
+                  <Label layoutX="41.0" layoutY="135.0" text="Nome" />
+                  <Label layoutX="41.0" layoutY="251.0" text="Telefone" />
+                  <Label layoutX="314.0" layoutY="135.0" text="CPF" />
+                  <Label layoutX="314.0" layoutY="251.0" text="Email" />
+                  <Label layoutX="43.0" layoutY="392.0" text="Data de Cadastro" />
+                  <TextField fx:id="txtNome" layoutX="43.0" layoutY="153.0" />
+                  <TextField fx:id="txtCpf" layoutX="314.0" layoutY="153.0" />
+                  <TextField fx:id="txtTelefone" layoutX="44.0" layoutY="269.0" />
+                  <TextField fx:id="txtEmail" layoutX="315.0" layoutY="269.0" />
+                  <TextField fx:id="txtData_cadastro" layoutX="44.0" layoutY="410.0" />
                </children>
             </AnchorPane>
         </items>

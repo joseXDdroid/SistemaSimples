@@ -18,11 +18,23 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Cadastros">
             <items>
-              <MenuItem mnemonicParsing="false" text="Clientes" />
+              <MenuItem mnemonicParsing="false" onAction="#abrirCliente" text="Clientes" />
                   <MenuItem mnemonicParsing="false" onAction="#abrirFuncionario" text="Funcionários" />
                   <MenuItem mnemonicParsing="false" onAction="#abrirProdutos" text="Produtos" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Operação">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#abrirFrenteCaixa" text="Frente de Caixa" />
+                  <MenuItem mnemonicParsing="false" text="Processa Estoque" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Relatórios">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Relatórios de Vendas" />
+                  <MenuItem mnemonicParsing="false" text="Relatórios de Estoque" />
+               </items>
+            </Menu>
         </menus>
       </MenuBar>
       <AnchorPane fx:id="form" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />

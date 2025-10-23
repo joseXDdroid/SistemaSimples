@@ -124,44 +124,44 @@
                <children>
                   <HBox alignment="BOTTOM_LEFT" prefHeight="91.0" prefWidth="465.0" spacing="5.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="95.0" prefWidth="95.0" text="F1            Novo            Pedido" textAlignment="CENTER" wrapText="true" HBox.hgrow="ALWAYS">
+                        <Button fx:id="btnF1" mnemonicParsing="false" prefHeight="95.0" prefWidth="95.0" text="F1            Novo            Pedido" textAlignment="CENTER" wrapText="true" HBox.hgrow="ALWAYS">
                            <font>
-                              <Font name="System Bold" size="12.0" />
+                              <Font name="System Bold" size="11.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="95.0" prefWidth="95.0" text="F2           Inserir            Item" textAlignment="CENTER" wrapText="true">
+                        <Button fx:id="btnF2" mnemonicParsing="false" prefHeight="95.0" prefWidth="95.0" text="F2           Inserir            Item" textAlignment="CENTER" wrapText="true">
                            <font>
-                              <Font name="System Bold" size="12.0" />
+                              <Font name="System Bold" size="11.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="95.0" prefWidth="95.0" text="F3          Pesquisar Produto" textAlignment="CENTER" wrapText="true">
+                        <Button fx:id="btnF3" mnemonicParsing="false" prefHeight="95.0" prefWidth="95.0" text="F3     Pesquisar  Produto" textAlignment="CENTER" wrapText="true">
                            <font>
-                              <Font name="System Bold" size="12.0" />
+                              <Font name="System Bold" size="11.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="95.0" prefWidth="95.0" text="F4            Adicionar Desconto" textAlignment="CENTER" wrapText="true">
+                        <Button fx:id="btnF4" mnemonicParsing="false" prefHeight="95.0" prefWidth="95.0" text="F4            Adicionar Desconto" textAlignment="CENTER" wrapText="true">
                            <font>
-                              <Font name="System Bold" size="12.0" />
+                              <Font name="System Bold" size="11.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="95.0" prefWidth="95.0" text="F5                       Abre           Caixa" textAlignment="CENTER" wrapText="true">
+                        <Button fx:id="btnF5" mnemonicParsing="false" prefHeight="95.0" prefWidth="95.0" text="F5                       Abre           Caixa" textAlignment="CENTER" wrapText="true">
                            <font>
-                              <Font name="System Bold" size="12.0" />
+                              <Font name="System Bold" size="11.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="95.0" prefWidth="95.0" text="F6            Excluir            Item" textAlignment="CENTER" wrapText="true">
+                        <Button fx:id="btnF6" mnemonicParsing="false" prefHeight="95.0" prefWidth="95.0" text="F6            Excluir            Item" textAlignment="CENTER" wrapText="true">
                            <font>
-                              <Font name="System Bold" size="12.0" />
+                              <Font name="System Bold" size="11.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="95.0" prefWidth="95.0" text="F7            Cancelar Pedido" textAlignment="CENTER" wrapText="true">
+                        <Button fx:id="btnF7" mnemonicParsing="false" prefHeight="95.0" prefWidth="95.0" text="F7            Cancelar Pedido" textAlignment="CENTER" wrapText="true">
                            <font>
-                              <Font name="System Bold" size="12.0" />
+                              <Font name="System Bold" size="11.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="95.0" prefWidth="95.0" text="F8            Finalizar Pedido" textAlignment="CENTER" wrapText="true">
+                        <Button fx:id="btnF8" mnemonicParsing="false" prefHeight="95.0" prefWidth="95.0" text="F8            Finalizar Pedido" textAlignment="CENTER" wrapText="true">
                            <font>
-                              <Font name="System Bold" size="12.0" />
+                              <Font name="System Bold" size="11.0" />
                            </font>
                         </Button>
                      </children>
