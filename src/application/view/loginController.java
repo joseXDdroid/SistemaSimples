@@ -2,6 +2,7 @@ package application.view;
 
 import application.dao.funcionarioDAO;
 import javafx.fxml.FXML;
+import application.util.metodo;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -23,8 +24,11 @@ public class loginController {
 /*FINAL ENCAPSULAMENTO*/    
     
 /*METODO PARA FECHAR O SISTEMA*/
-    public void close() {System.exit(0);}
-
+    public void close() {
+		if (metodo.mensagemConfirmacao("Fechar Sistema", null, "Deseja fechar o sistema?")) {
+			System.exit(0);
+		}		
+	}
 /*METODO DE ENTRAR OU LOGIN*/   
     public void login() {
     	String usuario=txtUsuario.getText();

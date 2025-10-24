@@ -1,5 +1,6 @@
 package application.view;
 
+import application.util.metodo;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -39,7 +40,11 @@ public class principalController {
 		} catch(Exception e){e.printStackTrace();}
 	}
 	
-	public void close() {System.exit(0);}
+	public void close() {
+		if (metodo.mensagemConfirmacao("Fechar Sistema", null, "Deseja fechar o sistema?")) {
+			System.exit(0);
+		}		
+	}
 	
 	public void loggout() {
 		//FECHAR A TELA ATUAL
