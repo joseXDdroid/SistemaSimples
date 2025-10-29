@@ -78,8 +78,9 @@ public class principalController {
 		carregaTelas("cliente.fxml","Cliente");
 	}
 	
-	public void abrirFrenteCaixa() {
-		carregaTelas("frenteCaixa.fxml","Frente Caixa");
-	}
+	@FXML 
+	private void abrirFrenteCaixa() {
+    	 metodo.abrirJanelaModal("frenteCaixa.fxml", null,  ((Stage) form.getScene().getWindow()));
+    } 
 
 }

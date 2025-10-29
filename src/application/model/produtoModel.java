@@ -9,18 +9,18 @@ public class produtoModel {
 	private String descricao;
 	private Double preco;
 	private int estoque;
-	private String cod_barras;
+	private String codBarras;
 	private Date data_cadastro;
 	private Date data_alteracao;
 
-	public produtoModel(int id, String nome, String descricao, Double preco, int estoque, String cod_barras,
+	public produtoModel(int id, String nome, String descricao, Double preco, int estoque, String codBarras,
 			Date data_cadastro, Date data_alteracao) {
 		this.id = id;
 		this.nome = nome;
 		this.descricao = descricao;
 		this.preco = preco;
 		this.estoque = estoque;
-		this.cod_barras = cod_barras;
+		this.codBarras = codBarras;
 		this.data_alteracao = data_alteracao;
 		this.data_cadastro = data_cadastro;
 	}
@@ -68,11 +68,11 @@ public class produtoModel {
 	}
 
 	public String getCod_barras() {
-		return cod_barras;
+		return codBarras;
 	}
 
-	public void setCod_barras(String cod_barras) {
-		this.cod_barras = cod_barras;
+	public void setCod_barras(String codBarras) {
+		this.codBarras = codBarras;
 	}
 
 	public Date getData_alteracao() {
