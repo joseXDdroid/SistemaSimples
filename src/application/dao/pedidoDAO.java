@@ -14,23 +14,23 @@ import application.util.conexao;
 public class pedidoDAO {
 
 	public int criarPedido() {
-		Connection conn = null;
+		Connection conn=null;
 		PreparedStatement query = null;
 		try {
-			conn = conexao.getConnection();
-			String sql = "INSERT INTO pedido (total) VALUES (0)";
+			conn=conexao.getConnection();
+			String sql = "INSERT INTO pedidos (data_pedido,id_cliente,id_funcionario,id_empresa,desconto,valor_pedido,valor_total,data_cadastro,data_alteracao) VALUES (now(),null,null,null,0,0,0,now(),null)";
 			query = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			query.executeUpdate();
 
-			ResultSet rs = query.getGeneratedKeys();
-			if (rs.next()) {
-				return rs.getInt(1); // retorna o ID do pedido criado
-			}
-		} catch (Exception e) {
+		    ResultSet rs = query.getGeneratedKeys();
+		    if (rs.next()) {
+		        return rs.getInt(1); // retorna o ID do pedido criado
+		    }
+		}catch(Exception e ) {
 			e.printStackTrace();
 			return 0;
 		}
-		return 0; // retorna 0 se falhar
+		 return 0; // retorna 0 se falhar
 	}
 
 	public boolean inserirItemPedido(int idPedido, int id_produto, int quantidade, double precoUnitario,
