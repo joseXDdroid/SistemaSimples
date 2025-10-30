@@ -4,20 +4,25 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+import application.Main;
+import application.view.principalController;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class metodo {
 
-private static final Map<String, Stage> janelasAbertas = new HashMap<>(); // 
+	private static final Map<String, Stage> janelasAbertas = new HashMap<>(); // 
 	
     public static void abrirJanela(String fxml, String titulo) {    	
         if (janelasAbertas.containsKey(fxml)) {// Verifica se a janela já está aberta
@@ -49,8 +54,8 @@ private static final Map<String, Stage> janelasAbertas = new HashMap<>(); //
             e.printStackTrace();
         }
     }
-	
-	public static void abrirJanelaModal(String fxml, String titulo, Stage janelaPrincipal) {
+    
+    public static void abrirJanelaModal(String fxml, String titulo, Stage janelaPrincipal) {
         if (janelasAbertas.containsKey(fxml)) {
             Stage janelaExistente = janelasAbertas.get(fxml);
             if (janelaExistente.isShowing()) {
@@ -87,7 +92,7 @@ private static final Map<String, Stage> janelasAbertas = new HashMap<>(); //
             e.printStackTrace();
         }
     }
-	
+    
 	public static void mensagem(String titulo, String cabecalho, String texto, String tipo) {
 		AlertType type = AlertType.CONFIRMATION;
 		
@@ -124,8 +129,8 @@ private static final Map<String, Stage> janelasAbertas = new HashMap<>(); //
             return defaultValue;
         }
     }
-	
-	public static boolean mensagemConfirmacao(String titulo, String cabecalho, String texto) {
+
+    public static boolean mensagemConfirmacao(String titulo, String cabecalho, String texto) {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle(titulo);
         alert.setHeaderText(cabecalho);
@@ -140,5 +145,49 @@ private static final Map<String, Stage> janelasAbertas = new HashMap<>(); //
         Optional<ButtonType> result = alert.showAndWait();
         return result.isPresent() && result.get() == SIM;
     }
-	
+    
+    /*
+      private void confirmarSaida(Stage stage) {
+        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle("Confirmação");
+        alerta.setHeaderText("Deseja realmente sair do sistema?");
+        alerta.setContentText("Clique em OK para sair ou Cancelar para continuar.");
+
+        alerta.showAndWait().ifPresent(resposta -> {
+            if (resposta == ButtonType.OK) {
+                stage.close(); // Fecha a janela
+            }
+        });
+    }
+     */
+
+    
+    public static void cursorMouse(Scene scene) {
+    	// SETAR IMAGEM COMO CURSOR DO MOUSE
+	    Image cursorImage = new Image(metodo.class.getResourceAsStream("/application/view/f1_vermelho.png"));
+	    ImageCursor imagemCursor = new ImageCursor(cursorImage, cursorImage.getWidth() / 2, cursorImage.getHeight() / 2);
+	    scene.setCursor(imagemCursor);
+	    
+    }
+    
+    
+    /* Não funcionou
+    public static void ativarImagem(Scene scene, Stage stage) {
+        // Carrega a imagem
+        Image imagem = new Image(metodo.class.getResourceAsStream("/application/view/f1_vermelho.png"));
+        ImageView imagemView = new ImageView(imagem);
+        imagemView.setFitWidth(32);
+        imagemView.setFitHeight(32);
+        imagemView.setMouseTransparent(true); // Permite que eventos passem "através" da imagem
+
+        // Adiciona a imagem ao topo da cena
+        ((Pane) scene.getRoot()).getChildren().add(imagemView);
+
+        // Atualiza a posição da imagem com base no mouse
+        scene.setOnMouseMoved(event -> {
+            imagemView.setLayoutX(event.getSceneX() + 10); // desloca 10px à direita
+            imagemView.setLayoutY(event.getSceneY() - 16); // centraliza verticalmente
+        });
+    }*/
+    
 }

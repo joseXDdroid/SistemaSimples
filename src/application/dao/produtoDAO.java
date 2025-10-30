@@ -13,74 +13,84 @@ public class produtoDAO {
 		
 		// LISTA
 
-		public List<produtoModel> listarProduto(String desc) {
-			Connection conn = null;
-			PreparedStatement query = null;
-			ResultSet resultado = null;
-
-			List<produtoModel> Produto = new ArrayList<produtoModel>();
-			try {
-				conn = conexao.getConnection();
-				if (conn == null)
-					return Produto;
-				String sql = "select *from produtos";
-
-				if (desc != null && !desc.isEmpty()) {
-					sql = "select *from produtos where nome like ?";
-					query = conn.prepareStatement(sql);
-					query.setString(1, "%" + desc + "%");
-				} else {
-					query = conn.prepareStatement(sql);
+	public List<produtoModel> listarProduto(String desc, int tipo){
+		Connection conn = null;
+		PreparedStatement query=null;
+		ResultSet resultado=null;
+		
+		List <produtoModel> produtos = new ArrayList <produtoModel>();
+		try {
+			conn=conexao.getConnection();
+			if(conn==null) return produtos;
+			String sql="select *from produtos";
+			
+			if(desc!=null && !desc.isEmpty()) {
+				if (tipo==1) {
+				 sql="select * from produtos where nome like ?";
+				 query=conn.prepareStatement(sql);
+				 query.setString(1, "%"+desc+"%");
+				} else if(tipo==2) {
+				 sql="select * from produtos where codbarras = ?";
+				 query=conn.prepareStatement(sql);
+				 query.setString(1, desc);
 				}
-
-				resultado = query.executeQuery();
-
-				while (resultado.next()) {
-					produtoModel p = new produtoModel(resultado.getInt("id_produto"),
-							resultado.getString("nome"), resultado.getString("descricao"), resultado.getDouble("preco"),
-							resultado.getInt("estoque"),resultado.getString("cod_barras"),resultado.getDate("data_cadastro"),
-							resultado.getDate("data_alteracao"));
-					p.setID(resultado.getInt("id_produto"));
-					p.setNome(resultado.getString("nome"));
-					p.setDescricao(resultado.getString("descricao"));
-					p.setPreco(resultado.getDouble("preco"));
-					p.setEstoque(resultado.getInt("estoque"));
-					p.setCod_barras(resultado.getString("cod_barras"));
-					p.setData_cadastro(resultado.getDate("data_cadastro"));
-					p.setData_alteracao(resultado.getDate("data_alteracao"));
-					Produto.add(p);
-
-				}
-
-			} catch (Exception e) {
-				e.printStackTrace();
+				
+			} else {
+				query=conn.prepareStatement(sql);
 			}
-			return Produto;
+			
+			resultado = query.executeQuery();
+			
+			while (resultado.next()) {
+				produtoModel p = new produtoModel(resultado.getInt("id_produto"),
+						resultado.getString("nome"), resultado.getString("descricao"), resultado.getDouble("preco"),
+						resultado.getInt("estoque"),resultado.getString("cod_barras"),resultado.getDate("data_cadastro"),
+						resultado.getDate("data_alteracao"));
+				p.setID(resultado.getInt("id_produto"));
+				p.setNome(resultado.getString("nome"));
+				p.setDescricao(resultado.getString("descricao"));
+				p.setPreco(resultado.getDouble("preco"));
+				p.setEstoque(resultado.getInt("estoque"));
+				p.setCod_barras(resultado.getString("cod_barras"));
+				p.setData_cadastro(resultado.getDate("data_cadastro"));
+				p.setData_alteracao(resultado.getDate("data_alteracao"));
+				produtos.add(p);
+
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
 		}
+		return produtos;
+	}
 
 		// INSERT
-		public boolean inserirProduto(produtoModel f) {
-			Connection conn = null;
+		public boolean inserirProduto(produtoModel p) {
+			Connection conn=null;
 			PreparedStatement query = null;
 			try {
-				conn = conexao.getConnection();
-				String sql = "insert produtos(nome,descricao,preco,estoque,cod_barras,data_cadastro,data_alteracao) values (?,?,?,?,?,now(),null)";
-
-				query=conn.prepareStatement(sql);
-				query.setString(1, f.getNome());
-				query.setString(2, f.getDescricao());
-				query.setDouble(3, f.getPreco());
-				query.setInt(4, f.getEstoque());
-				query.setString(5, f.getCod_barras());
-
-				int insert = query.executeUpdate();
-
-				return insert > 0;
-
-			} catch (Exception e) {
+			conn=conexao.getConnection();
+			String sql="insert produtos"+
+			"(nome,descricao,codbarras,preco,estoque,data_cadastro,data_alteracao)"+
+			" values (?,?,?,?,?,now(),null)";
+			
+			query=conn.prepareStatement(sql);
+			query.setString(1, p.getNome());
+			query.setString(2, p.getDescricao());
+			query.setString(3, p.getCod_barras());
+			query.setDouble(4, p.getPreco());
+			query.setInt(5, p.getEstoque());
+			
+			
+			int insert = query.executeUpdate();
+			
+			return insert>0;
+			
+			}catch(Exception e ) {
 				e.printStackTrace();
-				return false;
-			}
+			return false;
+			}			
+			
 		}
 
 		// UPDATE
