@@ -8,6 +8,7 @@ import java.util.Locale;
 import application.dao.pedidoDAO;
 import application.dao.produtoDAO;
 import application.model.itemModel;
+import application.model.pedidoModel;
 import application.model.produtoModel;
 import application.util.metodo;
 import javafx.application.Platform;
@@ -33,6 +34,10 @@ public class frenteCaixaController {
 	private TextField txtBusca;
 	@FXML
 	private Label lblTipoBusca;
+	@FXML
+	private Label lblQtdItens;
+	@FXML
+	private Label lblValorTotal;
 	@FXML
 	private Label lblPedido;
 	private int pedido = 0;
@@ -87,12 +92,17 @@ public class frenteCaixaController {
 				.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getNome()));
 
 		// PREPARA AS COLUNAS DA TABELA DE ITENS DO PEDIDO PARA RECEBER OS DADOS
-		colCodBarra.setCellValueFactory(new PropertyValueFactory<>("CodBarras"));
-		colDescricao.setCellValueFactory(new PropertyValueFactory<>("Descricao"));
-		colQuantidade.setCellValueFactory(new PropertyValueFactory<>("Quantidade"));
+		colCodBarra.setCellValueFactory(
+				data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getCod_Barras()));
+		colDescricao.setCellValueFactory(
+				data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getDescricao()));
+		colQuantidade.setCellValueFactory(
+				data -> new javafx.beans.property.SimpleIntegerProperty(data.getValue().getQuantidade()).asObject());
 
-		colValorUn.setCellValueFactory(new PropertyValueFactory<>("PrecoUnitario"));
-		colValorTotal.setCellValueFactory(new PropertyValueFactory<>("ValorTotal"));
+		colValorUn.setCellValueFactory(
+				data -> new javafx.beans.property.SimpleDoubleProperty(data.getValue().getPrecoUnitario()).asObject());
+		colValorTotal.setCellValueFactory(
+				data -> new javafx.beans.property.SimpleDoubleProperty(data.getValue().getValorTotal()).asObject());
 
 		// lblPedido.setText(String.valueOf(pedido));
 		lblPedido.setText(String.format("%06d", pedido));
@@ -263,20 +273,36 @@ public class frenteCaixaController {
 		tabItem.setItems(produtoList);
 	}
 
-	public void inserirNovoItem() {
-		pedidoDAO dao = new pedidoDAO();
-		boolean ok = dao.inserirItemPedido(pedido, tabItem.getSelectionModel().getSelectedItem().getID(),
-				Integer.valueOf(txtQuantidade.getText()), tabItem.getSelectionModel().getSelectedItem().getPreco(), 0,
-				tabItem.getSelectionModel().getSelectedItem().getPreco() * Integer.valueOf(txtQuantidade.getText()));
+	 public void inserirNovoItem() {
+ 		pedidoDAO dao = new pedidoDAO();
+		 boolean ok = dao.inserirItemPedido(pedido, 
+				 tabItem.getSelectionModel().getSelectedItem().getID(), 
+			 Integer.valueOf(txtQuantidade.getText()), 
+			 tabItem.getSelectionModel().getSelectedItem().getPreco(), 
+			 0, 
+			 tabItem.getSelectionModel().getSelectedItem().getPreco()*Integer.valueOf(txtQuantidade.getText())
+			);	 
+	 
+     		if (ok) {      			
+     			List<itemModel> itens= dao.listarItensPedido(pedido);
+     			itensList=FXCollections.observableArrayList(itens);
+	    	    		tabItemPedido.setItems(itensList);	        			
+     		}
+     		txtQuantidade.setText("1");
+     		txtBusca.setText("");
+     		txtBusca.requestFocus();
+     		buscaDescricao=false;
+     		tabItemVisualizacao(false);
+     		totalPedido();
+ }
 
-		if (ok) {
-			List<itemModel> itens = dao.listarItensPedido(pedido);
-			itensList = FXCollections.observableArrayList(itens);
-			tabItemPedido.setItems(itensList);
-		}
-		txtBusca.setText("");
-		txtBusca.requestFocus();
-		buscaDescricao = false;
-		tabItemVisualizacao(false);
+	private void totalPedido() {
+		// pedidoDAO dao = new pedidoDAO();
+		// List<pedidoModel> pedido = dao.resumoPedido(pedido);
+		List<pedidoModel> resumoPedido = pedidoDAO.resumoPedido(pedido);
+		pedidoModel resumo = resumoPedido.get(0);
+		lblValorTotal.setText(String.valueOf(resumo.getValorTotal()));
+		lblQtdItens.setText(String.valueOf(resumo.getQuantidade()));
+
 	}
 }
