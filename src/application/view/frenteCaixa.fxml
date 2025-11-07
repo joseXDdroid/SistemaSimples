@@ -137,12 +137,12 @@
                <children>
                   <HBox alignment="BOTTOM_LEFT" prefHeight="91.0" prefWidth="465.0" spacing="5.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="95.0" prefWidth="95.0" text="F1            Novo            Pedido" textAlignment="CENTER" wrapText="true" HBox.hgrow="ALWAYS">
+                        <Button mnemonicParsing="false" onAction="#inserirNovoItem" prefHeight="95.0" prefWidth="95.0" text="F1            Novo            Pedido" textAlignment="CENTER" wrapText="true" HBox.hgrow="ALWAYS">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="95.0" prefWidth="95.0" text="F2           Inserir            Item" textAlignment="CENTER" wrapText="true">
+                        <Button mnemonicParsing="false" onAction="#inserirNovoItem" prefHeight="95.0" prefWidth="95.0" text="F2           Inserir            Item" textAlignment="CENTER" wrapText="true">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>

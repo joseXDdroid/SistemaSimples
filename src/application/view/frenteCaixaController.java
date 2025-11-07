@@ -131,6 +131,14 @@ public class frenteCaixaController {
 						break;
 					case F2:
 						System.out.println("F2 pressionado");
+						
+					    if (txtBusca.getText().trim().isEmpty()) {
+					        metodo.mensagem("Inserir Item", null, "Digite ou selecione um produto!", "2");
+					        txtBusca.requestFocus();
+					        return;
+					    }
+
+					    inserirNovoItem();
 						break;
 					case F3:
 						System.out.println("F3 pressionado ");
@@ -305,4 +313,21 @@ public class frenteCaixaController {
 		lblQtdItens.setText(String.valueOf(resumo.getQuantidade()));
 
 	}
+	
+	@FXML
+	private void acaoInserirItem() {
+	    if (!pedidoIniciado) {
+	        metodo.mensagem("Incluir novo pedido", null, "Aperte 'F1' para iniciar um novo pedido", "1");
+	        return;
+	    }
+
+	    if (txtBusca.getText().trim().isEmpty()) {
+	        metodo.mensagem("Inserir Item", null, "Digite ou selecione um produto!", "2");
+	        txtBusca.requestFocus();
+	        return;
+	    }
+
+	    inserirNovoItem();
+	}
+
 }
